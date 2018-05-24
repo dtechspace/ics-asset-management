@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ics-taxonomy xmlns="http://www.dtechspace.com/acam/asset-taxonomy/0.9"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://www.dtechspace.com/acam/asset-taxonomy/0.9 file:../xsd/asset-taxonomy-schema_0.9.xsd">
+              xsi:schemaLocation="http://www.dtechspace.com/acam/asset-taxonomy/0.9 file:xsd/asset-taxonomy-schema_0.9.xsd">
 
     <asset name="ICS-Asset">
         <asset name="IT-Asset">
@@ -942,7 +942,7 @@
                         <keyword>hp:700</keyword> <!-- computer -->
                         <keyword>hp:arcsight</keyword>
                         <keyword>hp:apollo</keyword> <!-- Unix OS-->
-                        <keyword>hp:hp-ux</keyword>﻿<!-- Unix OS-->
+                        <keyword>hp:hp-ux</keyword><!-- Unix OS-->
                         <keyword>hp:integrated_lights-out</keyword> <!-- proprietary embedded server management technology -->
                         <keyword>hp:laserjet</keyword> <!-- Printer-->
                         <keyword>hp:ignite</keyword>
