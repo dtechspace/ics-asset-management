@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:sdt="http://www.dtechspace.com/acam/shared-datatypes/0.9"
+    targetNamespace="http://www.dtechspace.com/acam/shared-datatypes/0.9" elementFormDefault="qualified"
+    attributeFormDefault="unqualified" version="0.9" >
+    <xs:annotation>
+        <xs:appinfo>
+            <schema>Shared Datatypes Schema</schema>
+            <author>D-Tech, LLC</author>
+            <version>0.9</version>
+            <date>2017-04-14</date>
+        </xs:appinfo>
+    </xs:annotation>
+ 
+    <xs:element name="person" type="sdt:contact-type"/>
+    <xs:element name="address" type="sdt:address-type"/>
+    
+    <xs:complexType name="contact-type">
+        <xs:sequence>
+            <xs:element name="first" type="xs:NCName" maxOccurs="1"/>
+            <xs:element name="middle" type="xs:NCName" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="last" type="xs:NCName" maxOccurs="1"/>
+            <xs:element name="office_phone" type="sdt:telephone-number-type" maxOccurs="1"/>
+            <xs:element name="mobile_phone" type="sdt:telephone-number-type" maxOccurs="1"/>
+            <xs:element name="email" type="sdt:email-address-type" maxOccurs="1"/>
+            <xs:element name="address" type="sdt:address-type" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="address-type">
+        <xs:sequence>
+           <xs:element name="street" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="city" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="state" type="sdt:us-state-code-type" maxOccurs="1"/>
+           <xs:element name="zip" type="sdt:zip-code-type" maxOccurs="1"/>
+       </xs:sequence>
+    </xs:complexType>
+      
+    <xs:simpleType name="telephone-number-type">
+        <xs:annotation>
+            <xs:documentation>The telephone number. For a North American number, the number must be valid and the format
+                must be XXX-XXX-XXXX where X is a digit. For an international number, the number must begin with a '+'
+                symbol, followed by 7 to 15 digits. A space may be used between digits, as appropriate. For example: +88
+                888 888 8 (this is following the ITU-T E.123 notation).</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:pattern value="(([2-9][0-8]\d-[2-9]\d{2}-[0-9]{4})|(\+([0-9] ?){6,14}[0-9]))"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="email-address-type">    
+        <xs:restriction base="xs:token">
+            <xs:pattern value="([a-zA-Z0-9_\-])([a-zA-Z0-9_\-\.]*)@(\[((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}|((([a-zA-Z0-9\-]+)\.)+))([a-zA-Z]{2,}|(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\])"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="zip-code-type">    
+        <xs:restriction base="xs:token">
+            <xs:pattern value="[0-9]{5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+        
+    <xs:simpleType name="us-state-code-type">
+        <xs:annotation>
+            <xs:documentation>
+                Two-letter code for one of the 59 U.S. states/territories.
+            </xs:documentation>
+        </xs:annotation>
+        
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AL"/> <!-- ALABAMA -->
+            <xs:enumeration value="AK"/> <!-- ALASKA -->
+            <xs:enumeration value="AS"/> <!-- AMERICAN SAMOA -->
+            <xs:enumeration value="AZ"/> <!-- ARIZONA -->
+            <xs:enumeration value="AR"/> <!-- ARKANSAS -->
+            <xs:enumeration value="CA"/> <!-- CALIFORNIA -->
+            <xs:enumeration value="CO"/> <!-- COLORADO -->
+            <xs:enumeration value="CT"/> <!-- CONNECTICUT -->
+            <xs:enumeration value="DE"/> <!-- DELAWARE -->
+            <xs:enumeration value="DC"/> <!-- DISTRICT OF COLUMBIA -->
+            <xs:enumeration value="FM"/> <!-- FEDERATED STATES OF MICRONESIA -->
+            <xs:enumeration value="FL"/> <!-- FLORIDA -->
+            <xs:enumeration value="GA"/> <!-- GEORGIA -->
+            <xs:enumeration value="GU"/> <!-- GUAM -->
+            <xs:enumeration value="HI"/> <!-- HAWAII -->
+            <xs:enumeration value="ID"/> <!-- IDAHO -->
+            <xs:enumeration value="IL"/> <!-- ILLINOIS -->
+            <xs:enumeration value="IN"/> <!-- INDIANA -->
+            <xs:enumeration value="IA"/> <!-- IOWA -->
+            <xs:enumeration value="KS"/> <!-- KANSAS -->
+            <xs:enumeration value="KY"/> <!-- KENTUCKY -->
+            <xs:enumeration value="LA"/> <!-- LOUISIANA -->
+            <xs:enumeration value="ME"/> <!-- MAINE -->
+            <xs:enumeration value="MH"/> <!-- MARSHALL ISLANDS -->
+            <xs:enumeration value="MD"/> <!-- MARYLAND -->
+            <xs:enumeration value="MA"/> <!-- MASSACHUSETTS -->
+            <xs:enumeration value="MI"/> <!-- MICHIGAN -->
+            <xs:enumeration value="MN"/> <!-- MINNESOTA -->
+            <xs:enumeration value="MS"/> <!-- MISSISSIPPI -->
+            <xs:enumeration value="MO"/> <!-- MISSOURI -->
+            <xs:enumeration value="MT"/> <!-- MONTANA -->
+            <xs:enumeration value="NE"/> <!-- NEBRASKA -->
+            <xs:enumeration value="NV"/> <!-- NEVADA -->
+            <xs:enumeration value="NH"/> <!-- NEW HAMPSHIRE -->
+            <xs:enumeration value="NJ"/> <!-- NEW JERSEY -->
+            <xs:enumeration value="NM"/> <!-- NEW MEXICO -->
+            <xs:enumeration value="NY"/> <!-- NEW YORK -->
+            <xs:enumeration value="NC"/> <!-- NORTH CAROLINA -->
+            <xs:enumeration value="ND"/> <!-- NORTH DAKOTA -->
+            <xs:enumeration value="MP"/> <!-- NORTHERN MARIANA ISLANDS -->
+            <xs:enumeration value="OH"/> <!-- OHIO -->
+            <xs:enumeration value="OK"/> <!-- OKLAHOMA -->
+            <xs:enumeration value="OR"/> <!-- OREGON -->
+            <xs:enumeration value="PW"/> <!-- PALAU -->
+            <xs:enumeration value="PA"/> <!-- PENNSYLVANIA -->
+            <xs:enumeration value="PR"/> <!-- PUERTO RICO -->
+            <xs:enumeration value="RI"/> <!-- RHODE ISLAND -->
+            <xs:enumeration value="SC"/> <!-- SOUTH CAROLINA -->
+            <xs:enumeration value="SD"/> <!-- SOUTH DAKOTA -->
+            <xs:enumeration value="TN"/> <!-- TENNESSEE -->
+            <xs:enumeration value="TX"/> <!-- TEXAS -->
+            <xs:enumeration value="UT"/> <!-- UTAH -->
+            <xs:enumeration value="VT"/> <!-- VERMONT -->
+            <xs:enumeration value="VI"/> <!-- VIRGIN ISLANDS -->
+            <xs:enumeration value="VA"/> <!-- VIRGINIA -->
+            <xs:enumeration value="WA"/> <!-- WASHINGTON -->
+            <xs:enumeration value="WV"/> <!-- WEST VIRGINIA -->
+            <xs:enumeration value="WI"/> <!-- WISCONSIN -->
+            <xs:enumeration value="WY"/> <!-- WYOMING -->
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="GUID">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                The representation of a GUID, generally the id of an element.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="static-fields">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="facility-types">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="facility-type" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element><xs:element name="us-states">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="state" minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType mixed="true">
+                                    <xs:attribute name="code" use="required" type="xs:string"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="facility-regions">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="region" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="facility-reactor-types"> <!-- Same value as technology -->
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="reactor-type" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="facility-reactor-vendor-types"> <!-- Same value as technology -->
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="reactor-vendor-type" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="facility-containment-types">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="containment-type" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="facility-operators">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="operator" minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType mixed="true">
+                                    <xs:attribute name="id" use="required" type="xs:integer"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="asset-instance-types">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="instance-type" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="asset-asset-types">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="asset-type" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
