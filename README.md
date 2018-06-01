@@ -31,7 +31,7 @@ Once you have MongoDB and Python virtual environment established, you can start 
 python run.py import [-s or --source SOURCE] [-dl ?download]
 	-s SOURCE specifies the directory where the cpe zip file is located. If no source is supplied, it defaults to the data/ directory
 	-dl forces a download from the NVD web site.  If starting without -dl and there is no file found in the source destination, 
-	the program will automatically pull the CPE data from the NVD web site.
+	the program will automatically pull the CPE data from the NVD web site, as well as save it locally in the default directory.
 ```
 
 2.  Categorizing CPE entries
@@ -40,6 +40,10 @@ python run.py import [-s or --source SOURCE] [-dl ?download]
 python run.py categorize [-f or --force]
 	-f drops existing CPE categorized collection in MongoDB before rerunning the categorization script
 ```
+
+3.  Viewing categorized CPE entries
+
+We recommend using a third party mongodb database viewer such as Robo 3T to view the categorized CPE collection.  The three documents found in the cpe_categories collection are the Hardware, Operating System, and Application categories.  CPE entries will be saved into a hierarchical format mirroring the XML asset taxonomy.  Uncategorized CPE entries will be stored in the cpe_list found in the root of each document.  Categorized entries will be found in the leaf nodes alongside a list of keywords used to aggregate the CPE entries.
 
 ## Why ICSAM?
 
